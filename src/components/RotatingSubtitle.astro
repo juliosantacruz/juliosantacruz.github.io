@@ -1,0 +1,120 @@
+---
+const words = ["Frontend", "Backend", "Mobile", "AI", "FullStack"];
+const fixedWord = "Developer";
+---
+
+<h2 class="subtitle">
+  <span class="rotating-words">
+    {
+      words.map((word, idx) => (
+        <span style={`--i:${idx}`} class="word text_gradient_effect">
+          {word}
+        </span>
+      ))
+    }
+  </span>
+  <span class="fixed-word">{fixedWord}</span>
+</h2>
+
+<style>
+  :global(.subtitle) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 2.8rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+  }
+
+  /* contenedor palabras */
+  :global(.rotating-words) {
+    position: relative;
+    width: 100%;
+    height: 1em;
+    overflow: hidden;
+    text-align: right;
+  }
+
+  /* palabra animada */
+  :global(.word) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    animation: rotateWords 10s infinite;
+    animation-delay: calc(var(--i) * 2s);
+  }
+
+  /* gradiente */
+  :global(.text_gradient_effect) {
+    background: linear-gradient(90deg, #fc72ff, #8f68ff, #487bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+  }
+
+  /* animación */
+  @keyframes rotateWords {
+    0%,
+    20% {
+      opacity: 1;
+      transform: rotateX(0deg);
+    }
+    25%,
+    50% {
+      opacity: 0;
+      transform: rotateX(90deg);
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* responsive */
+  @media (max-width: 1400px) {
+    :global(.subtitle) {
+      font-size: 2.4rem;
+    }
+  }
+  @media (max-width: 1200px) {
+    :global(.subtitle) {
+      font-size: 2.2rem;
+    }
+  }
+  @media (max-width: 720px) {
+    :global(.subtitle) {
+      font-size: 2.0rem;
+    }
+  }
+  @media (max-width: 580px) {
+    :global(.subtitle) {
+      font-size: 1.6em;
+    }
+  }
+  @media (max-width: 480px) {
+    :global(.subtitle) {
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 2.6rem;
+    }
+  }
+    @media (max-width: 400px) {
+    :global(.subtitle) {
+      /* flex-direction: column; */
+      /* align-items: flex-end; */
+      font-size: 1.8rem;
+    }
+  }
+    @media (max-width: 300px) {
+    :global(.subtitle) {
+      /* flex-direction: column; */
+      /* align-items: flex-end; */
+      font-size: 1rem;
+    }
+  }
+</style>

@@ -2,6 +2,7 @@
 import background from "../assets/HeroBackground.jpg";
 // import CardQuotes from "../components/CardQuotes.astro";
 import jsLogo from "../assets/logo_450x200_azul_trans.png";
+import RotatingSubtitle from "../components/RotatingSubtitle.astro";
 ---
 
 <section id="Hero" style={`background-image:url(${background.src})`}>
@@ -11,15 +12,16 @@ import jsLogo from "../assets/logo_450x200_azul_trans.png";
         <span class="italicText">Hi, I'm </span>
         <br />
         Julio Santacruz
-        <br />
+        <!-- <br /> -->
         <span class="italicText">and I'm a </span>
-        <br />
-        <span class="text-gradient">Web Developer</span>
+        <!-- <br /> -->
+        <!-- <span class="text_gradient_effect">Web Developer</span> -->
       </h1>
-      <p>HTML • CSS • Javascript • React • Django • Postgresql</p>
+      <RotatingSubtitle align="right" />
+
+      <p class="">HTML • CSS • Javascript • React • Django • C# • Postgresql</p>
     </div>
     <div class="logo">
-      <!-- <CardQuotes/> -->
       <img src={jsLogo.src} alt="logo" class="jsLogo" />
     </div>
   </div>
@@ -68,7 +70,7 @@ import jsLogo from "../assets/logo_450x200_azul_trans.png";
 
     position: relative;
     top: 30%;
-    width: 50%;
+    width: 60%;
     padding: 30px;
     margin: auto;
     /* background-color: rgba(150, 150, 150, 0.6); */
@@ -96,11 +98,11 @@ import jsLogo from "../assets/logo_450x200_azul_trans.png";
   }
   h1 {
     font-size: 40px;
-    margin: 20px 0 10px 0;
+    margin: 20px 0 0 0;
     color: aliceblue;
   }
   p {
-    font-size: 20px;
+    font-size: 26px;
     margin: 10px 0 20px 0;
     font-weight: 600;
   }
