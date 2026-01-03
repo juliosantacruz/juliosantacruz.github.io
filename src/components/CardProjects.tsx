@@ -13,8 +13,8 @@ const CardProjects = ({ data }: any) => {
       <div className="CardContent">
         <h3>{data.title}</h3>
         <ul>
-          {data.stack.map((element: any) => {
-            return <li key={element.name}><img className="iconTech" src={element.icon} alt="" /> {element.name} </li>;
+          {data.stack.map((element: any, index:number) => {
+            return <li key={`${index}-${element.name}`}  ><img className="iconTech" src={element.icon.src} alt="" /> {element.name} </li>;
           })}
         </ul>
       </div>
