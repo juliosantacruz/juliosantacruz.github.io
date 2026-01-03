@@ -1,11 +1,6 @@
 ---
 import Sliders from "../components/SlidersProjects";
 import SlidersDevTo from "../components/SlidersDevTo";
-
-const response = await fetch(
-  "https://dev.to/api/articles?username=julio_santacruz"
-);
-const devToPost = await response.json();
 ---
 
 <section id="Projects">
@@ -33,7 +28,7 @@ const devToPost = await response.json();
 
     <div class="ProjectSlider">
       <h3>DevTo Posts...</h3>
-      <SlidersDevTo data={devToPost} client:visible />
+      <SlidersDevTo  client:visible />
     </div>
   </div>
   <div class="bottomWave">

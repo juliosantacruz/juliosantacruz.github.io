@@ -49,7 +49,7 @@ const skillsArr = [
         <div class="skillsGroup">
             {
                 skillsArr.sort(() => Math.random() - 0.5).map((card) => {
-                    return <LogoIcon title={card.title} image={card.img} />;
+                    return <LogoIcon title={card.title} image={card.img.src} />;
                 })
             }
         </div>

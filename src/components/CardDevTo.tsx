@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React  from "react";
 import "../styles/CardDevTo.scss";
 
 const CardProjects = ({ data }: any) => {
   return (
     <article className="CardDevTo">
       <div className="CardImage">
-        <img src={data.cover_image} alt="" />
+        <img src={data.cover_image.src} alt="" />
       </div>
 
       <div className="CardContent">

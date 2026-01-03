@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardDevTo from "./CardDevTo";
 import DevToProjects from "../mocks/DevToMock.json";
 // Import Swiper React components
@@ -9,7 +9,21 @@ import "swiper/css";
 
 
 
-export default function SlidersDevTo({ data }: any) {
+export default function SlidersDevTo( ) {
+  const [posts, setPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      fetch("https://dev.to/api/articles?username=julio_santacruz")
+        .then((res) => res.json())
+        .then((data) => {
+          setPosts(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }, []);
+
+  if (loading) return <p>Loading posts...</p>;
 
   return (
     <div>
@@ -48,7 +62,7 @@ export default function SlidersDevTo({ data }: any) {
 
         navigation
       >
-        {data.map((element: any) => {
+        {posts.map((element: any) => {
 
             return (
               <SwiperSlide key={element.id}>
