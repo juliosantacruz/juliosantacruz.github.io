@@ -17,10 +17,10 @@ import SlidersDevTo from "../components/SlidersDevTo";
     </svg>
   </div>
   <div class="ProjectWrapper">
-    <div class="ProjectSlider">
+    <!-- <div class="ProjectSlider">
       <h3>Latest Projects / Demos...</h3>
       <Sliders type="profesional" client:visible />
-    </div>
+    </div> -->
     <div class="ProjectSlider">
       <h3>DevTo Posts...</h3>
       <SlidersDevTo  client:load />
@@ -43,7 +43,7 @@ import SlidersDevTo from "../components/SlidersDevTo";
 
 <style>
   section {
-    background-color: white;
+    background-color: var(--surface);
     position: relative;
     height: 100%;
     width: 100vw;
@@ -59,6 +59,7 @@ import SlidersDevTo from "../components/SlidersDevTo";
     margin: 40px auto;
   }
   h3 {
+    color: var(--text);
     font-size: 40px;
     margin: 40px 0 10px 0;
   }
@@ -103,7 +104,7 @@ import SlidersDevTo from "../components/SlidersDevTo";
   }
 
   .bottomWave .shape-fill {
-    fill: #f2f2f2;
+    fill: var(--surface-alt);
   }
 
   .topWave {
@@ -124,6 +125,6 @@ import SlidersDevTo from "../components/SlidersDevTo";
   }
 
   .topWave .shape-fill {
-    fill: #f2f2f2;
+    fill: var(--surface-alt);
   }
 </style>

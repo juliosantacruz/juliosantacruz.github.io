@@ -4,7 +4,7 @@ export interface Props {
     image: string;
 }
 const { title, image } = Astro.props;
-const nameTitle = title;
+const nameTitle = title.replace(/[^a-zA-Z0-9]/g, "");
 ---
 
 <article class={`Card${nameTitle}`}>
@@ -63,6 +63,10 @@ card?.addEventListener("mouseleave", function () {
         background-color: rgba(33, 148, 43, 0.582);
         /* border-radius: 20px; */
         border: 3px solid rgba(245, 222, 179, 0);
+    }
+    /* en oscuro se usa el tono opaco equivalente para que los logos negros sigan visibles */
+    :global([data-theme="dark"]) article {
+        background-color: #7fbf86;
     }
     img {
         width: 90%;

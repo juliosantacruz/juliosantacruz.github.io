@@ -1,0 +1,86 @@
+---
+// Grúa torre levantando una hoja con la tabla de un presupuesto.
+---
+
+<svg class="sketch crane" viewBox="0 0 400 240" role="img" aria-hidden="true">
+  <defs>
+    <filter id="pencilCrane" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" />
+      <feDisplacementMap in="SourceGraphic" scale="2.6" />
+    </filter>
+  </defs>
+  <g filter="url(#pencilCrane)">
+    <!-- piso -->
+    <path d="M8 211 Q 150 208 250 211 T 392 210" />
+    <path class="faint" d="M40 216 L80 216 M200 217 L240 217 M320 216 L360 216" />
+    <!-- base y torre en celosía -->
+    <path d="M100 211 L146 210 M106 211 L106 203 L140 203 L140 211" />
+    <path d="M114 203 L115 52 M132 203 L131 52" />
+    <path class="faint" d="M115 195 L131 175 L115 155 L131 135 L115 115 L131 95 L115 75 L131 55" />
+    <!-- cabina -->
+    <path d="M110 70 L136 70 L136 52 L110 52 Z" />
+    <!-- pluma y contrapluma -->
+    <path d="M60 52 L352 50 M60 42 L352 42 L352 50" />
+    <path class="faint" d="M140 52 L152 42 L164 52 L176 42 L188 52 L200 42 L212 52 L224 42 L236 51 L248 42 L260 51 L272 42 L284 51 L296 42 L308 51 L320 42 L332 51 L344 42" />
+    <path d="M123 52 L123 20 L60 42 M123 20 L352 42" class="faint" />
+    <path d="M62 52 L62 68 L88 68 L88 52" />
+    <!-- carro -->
+    <path d="M282 50 L302 50 L302 58 L282 58 Z" />
+    <!-- cable: se estira y encoge al mismo ritmo que la carga -->
+    <path class="cable" d="M292 58 L292 118" />
+    <!-- carga: gancho + hoja de presupuesto, se anima -->
+    <g class="load">
+      <path d="M292 0 Q 285 6 292 10 Q 299 6 296 2" />
+      <path d="M292 10 L268 22 M292 10 L316 22" class="faint" />
+      <g class="sheet">
+        <path d="M262 22 L322 21 L323 92 L263 93 Z" />
+        <path d="M270 32 L300 32" />
+        <path class="faint" d="M263 44 L322 43 M263 56 L322 55 M263 68 L322 67 M263 80 L322 79 M303 43 L304 92" />
+        <path class="faint" d="M309 50 L317 50 M309 62 L316 62 M309 74 L318 74 M309 86 L315 86" />
+      </g>
+    </g>
+  </g>
+</svg>
+
+<style>
+  .crane .load {
+    animation: lift 8s ease-in-out infinite;
+  }
+  @keyframes lift {
+    0%, 12% { transform: translateY(118px); }
+    55%, 80% { transform: translateY(64px); }
+    100% { transform: translateY(118px); }
+  }
+  .crane .cable {
+    transform-box: view-box;
+    transform-origin: 292px 58px;
+    animation: cable 8s ease-in-out infinite;
+  }
+  @keyframes cable {
+    0%, 12% { transform: scaleY(1); }
+    55%, 80% { transform: scaleY(0.1); }
+    100% { transform: scaleY(1); }
+  }
+  .crane .sheet {
+    transform-box: view-box;
+    transform-origin: 292px 10px;
+    animation: sway 4s ease-in-out infinite;
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-2.5deg); }
+    50% { transform: rotate(2.5deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .crane .load,
+    .crane .sheet,
+    .crane .cable {
+      animation: none;
+    }
+    .crane .load {
+      transform: translateY(64px);
+    }
+    .crane .cable {
+      transform: scaleY(0.1);
+    }
+  }
+</style>

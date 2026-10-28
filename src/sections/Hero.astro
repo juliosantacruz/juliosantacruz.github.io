@@ -2,27 +2,30 @@
 import background from "../assets/HeroBackground.jpg";
 // import CardQuotes from "../components/CardQuotes.astro";
 import jsLogo from "../assets/logo_450x200_azul_trans.png";
-import RotatingSubtitle from "../components/RotatingSubtitle.astro";
+const cvPath = "/Julio Santacruz_Fullstack Dev_Resume.pdf";
 ---
 
 <section id="Hero" style={`background-image:url(${background.src})`}>
   <div class="heroCard">
     <div class="title">
       <h1>
-        <span class="italicText">Hi, I'm </span>
+        <span class="italicText" data-i18n="hero.greeting">Hi, I'm</span>
         <br />
         Julio Santacruz
-        <!-- <br /> -->
-        <span class="italicText">and I'm a </span>
-        <!-- <br /> -->
-        <!-- <span class="text_gradient_effect">Web Developer</span> -->
       </h1>
-      <RotatingSubtitle align="right" />
-
-      <p class="">HTML • CSS • Javascript • React • Django • C# • Postgresql</p>
+      <h2 class="role">Full-Stack Developer</h2>
+      <p class="tagline" data-i18n="hero.tagline">
+        Building software for real-world operations
+      </p>
     </div>
     <div class="logo">
       <img src={jsLogo.src} alt="logo" class="jsLogo" />
+      <a
+        href={cvPath}
+        download
+        class="cvButton"
+        data-i18n="hero.downloadCv">Download CV</a
+      >
     </div>
   </div>
 </section>
@@ -79,11 +82,50 @@ import RotatingSubtitle from "../components/RotatingSubtitle.astro";
     display: flex;
     align-items: center;
   }
+  :global([data-theme="dark"]) .heroCard {
+    background: rgba(21, 24, 36, 0.45);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  }
   .logo {
     width: 40%;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .role {
+    margin: 8px 0 0 0;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.1;
+    background: linear-gradient(90deg, #fc72ff, #8f68ff, #487bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .tagline {
+    color: aliceblue;
+    font-weight: 500;
+  }
+  .cvButton {
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0px 10px 6px 0px rgba(0, 0, 0, 0.25);
+  }
+  .cvButton:hover,
+  .cvButton:focus-visible {
+    background: var(--accent-hover);
+  }
+  .cvButton:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
   }
   .jsLogo {
     width: 80%;
@@ -184,6 +226,9 @@ import RotatingSubtitle from "../components/RotatingSubtitle.astro";
       font-size: 24px;
       margin: 10px 0 10px 0;
       color: aliceblue;
+    }
+    .role {
+      font-size: 1.7rem;
     }
     .italicText {
       font-size: 20px;

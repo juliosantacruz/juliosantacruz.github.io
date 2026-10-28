@@ -7,15 +7,68 @@ import logo from "../assets/logo_450x200_azul_trans.png";
     <a href="#Hero" class="logoNavbar">
       <img src={logo.src} alt="logo" class="logo" /></a
     >
-    <a href="#AboutMe" class="linkNavbar"> About Me</a>
-    <a href="#Skills" class="linkNavbar"> Skills</a>
-    <a href="#Projects" class="linkNavbar"> Projects</a>
-    <a href="#Certificates" class="linkNavbar"> Certificates</a>
-    <a href="#Contact" class="linkNavbar"> Contact</a>
+    <div class="navLinks" id="navLinks">
+    <a href="#AboutMe" class="linkNavbar" data-i18n="nav.about">About</a>
+    <a href="#Experience" class="linkNavbar" data-i18n="nav.experience">Experience</a>
+    <a href="#Projects" class="linkNavbar" data-i18n="nav.projects">Projects</a>
+    <a href="#Skills" class="linkNavbar" data-i18n="nav.skills">Skills</a>
+    <a href="#Contact" class="linkNavbar" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="navControls">
+      <button
+        id="langToggle"
+        class="navToggle"
+        type="button"
+        data-i18n="nav.langToggle"
+        data-i18n-aria="nav.langToggleLabel"
+        aria-label="Cambiar a español">ES</button
+      >
+      <button
+        id="themeToggle"
+        class="navToggle"
+        type="button"
+        data-i18n-aria="nav.themeToggleLabel"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="iconMoon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+        <svg class="iconSun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"></circle>
+          <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path>
+        </svg>
+      </button>
+      <button
+        id="menuToggle"
+        class="navToggle"
+        type="button"
+        aria-controls="navLinks"
+        aria-expanded="false"
+        data-i18n-aria="nav.menuLabel"
+        aria-label="Open menu"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
   </nav>
 </header>
 
 <script>
+  const navEl = document.getElementById("navbar");
+  const menuBtn = document.getElementById("menuToggle");
+  const setMenu = (open: boolean) => {
+    navEl?.classList.toggle("open", open);
+    menuBtn?.setAttribute("aria-expanded", String(open));
+  };
+  menuBtn?.addEventListener("click", () =>
+    setMenu(!navEl?.classList.contains("open"))
+  );
+  document
+    .querySelectorAll("#navLinks a")
+    .forEach((link) => link.addEventListener("click", () => setMenu(false)));
+
   // console.log("inicia");
   let indexSeccionActiva: string;
   const menu: any = document.getElementById("navbar");
@@ -79,11 +132,65 @@ import logo from "../assets/logo_450x200_azul_trans.png";
     align-items: center;
 
     border-radius: 15px;
-    background: #fff;
-    box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.2);
+    background: var(--nav-bg);
+    box-shadow: 0px 7px 10px 5px var(--nav-shadow);
   }
   .linkNavbar {
-    width: 18%;
+    flex: 1 1 0;
+    min-width: 0;
+    color: var(--nav-text);
+    white-space: nowrap;
+  }
+  .navLinks {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+  .navControls {
+    display: flex;
+    gap: 6px;
+    padding: 0 12px;
+  }
+  #menuToggle {
+    display: none;
+  }
+  .navToggle {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--nav-shadow);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--nav-text);
+    font: 600 13px system-ui, sans-serif;
+    cursor: pointer;
+  }
+  .navToggle:hover {
+    background: var(--nav-shadow);
+  }
+  .navToggle:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .navToggle svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .iconSun,
+  :global([data-theme="dark"]) .iconMoon {
+    display: none;
+  }
+  :global([data-theme="dark"]) .iconSun {
+    display: block;
   }
   .logo {
     width: auto;
@@ -100,7 +207,7 @@ import logo from "../assets/logo_450x200_azul_trans.png";
     text-decoration: none;
   }
   .active {
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid var(--nav-text);
   }
   @media screen and (max-width: 1024px) {
     nav {
@@ -113,8 +220,8 @@ import logo from "../assets/logo_450x200_azul_trans.png";
       align-items: center;
 
       border-radius: 15px;
-      background: #fff;
-      box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.2);
+      background: var(--nav-bg);
+      box-shadow: 0px 7px 10px 5px var(--nav-shadow);
     }
     .logo {
       width: auto;
@@ -138,16 +245,70 @@ import logo from "../assets/logo_450x200_azul_trans.png";
     }
     a {
       font-size: 16px;
-    }.linkNavbar {
-    width: auto;
+    }
+    .navControls {
+      padding: 0 6px;
+      gap: 4px;
+    }
+    .navToggle {
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
+    }
   }
+
+  @media screen and (max-width: 560px) {
+    nav {
+      position: relative;
+      box-sizing: border-box;
+      justify-content: space-between;
+      padding-left: 10px;
+    }
+    #menuToggle {
+      display: flex;
+    }
+    .navLinks {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 8px 0;
+      border-radius: 15px;
+      background: var(--nav-bg);
+      box-shadow: 0px 7px 10px 5px var(--nav-shadow);
+    }
+    nav.open .navLinks {
+      display: flex;
+    }
+    .navLinks .linkNavbar {
+      flex: none;
+      font-size: 16px;
+      height: 44px;
+      line-height: 44px;
+    }
+    .navLinks .active {
+      border-bottom: none;
+      font-weight: 700;
+    }
   }
 
   @media screen and (max-width: 425px) {
     a {
-      font-size: 12px;
+      font-size: 11px;
       height: 30px;
       line-height: 30px;
+    }
+    .navToggle {
+      width: 26px;
+      height: 26px;
+      font-size: 11px;
+    }
+    .navToggle svg {
+      width: 15px;
+      height: 15px;
     }
     .logo {
       width: auto;

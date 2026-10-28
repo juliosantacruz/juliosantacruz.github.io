@@ -1,0 +1,232 @@
+---
+import WarehouseSketch from "../components/sketches/WarehouseSketch.astro";
+import AutomationSketch from "../components/sketches/AutomationSketch.astro";
+import CraneSketch from "../components/sketches/CraneSketch.astro";
+---
+
+<section id="Experience">
+  <div class="topWave">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        class="shape-fill"></path>
+    </svg>
+  </div>
+  <div class="experienceWrapper">
+    <h2 data-i18n="experience.title">Experience</h2>
+    <p class="intro" data-i18n="experience.intro">
+      Selected work. Client names are kept confidential.
+    </p>
+
+    <article class="case">
+      <div class="caseArt"><WarehouseSketch /></div>
+      <div class="caseText">
+        <h3 data-i18n="experience.wms.title">Warehouse inventory traceability</h3>
+        <p data-i18n="experience.wms.body">
+          I designed a system that gives every pallet its own identity, from the
+          moment it enters the warehouse until it leaves. It includes bulk label
+          printing, location assignment based on category rules, and picking tasks
+          that follow FIFO (first in, first out), so the oldest product always
+          ships first.
+        </p>
+        <p class="result">
+          <strong data-i18n="experience.resultLabel">Result:</strong>
+          <span data-i18n="experience.wms.result">
+            Zero lost product, faster responses to every sale, and full
+            traceability for each order.
+          </span>
+        </p>
+      </div>
+    </article>
+
+    <article class="case reverse">
+      <div class="caseArt"><AutomationSketch /></div>
+      <div class="caseText">
+        <h3 data-i18n="experience.sales.title">Sales records automation</h3>
+        <p data-i18n="experience.sales.body">
+          I replaced a manual process built on an Excel macro, with more than
+          15,000 rows and database queries that kept freezing, with an automated
+          web workflow. The system prepares the data and gives users tools to
+          review each record and decide whether to include, fix, or discard it.
+        </p>
+        <p class="result">
+          <strong data-i18n="experience.resultLabel">Result:</strong>
+          <span data-i18n="experience.sales.result">
+            A faster, more stable process that is easier to run, with no crashes
+            from data volume.
+          </span>
+        </p>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="caseArt"><CraneSketch /></div>
+      <div class="caseText">
+        <h3 data-i18n="experience.saas.title">Construction budgeting SaaS platform</h3>
+        <p data-i18n="experience.saas.body">
+          I built, end to end, a web platform that helps contractors calculate
+          unit prices professionally instead of quoting by guesswork. Because it
+          lives in the cloud, their data is available anywhere, without depending
+          on software installed on a single computer.
+        </p>
+        <p class="result">
+          <strong data-i18n="experience.resultLabel">Result:</strong>
+          <span data-i18n="experience.saas.result">
+            More accurate estimates, more confidence when quoting, and access from
+            any device.
+          </span>
+        </p>
+        <a
+          class="caseLink"
+          href="https://costana.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="experience.viewProject">View project</a
+        >
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  #Experience {
+    min-height: 100vh;
+    width: 100%;
+    padding: 0 0 80px 0;
+    box-sizing: border-box;
+    background-color: var(--surface-alt);
+    color: var(--text);
+  }
+  .topWave {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .topWave svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 98px;
+  }
+  .topWave .shape-fill {
+    fill: var(--surface);
+  }
+  .experienceWrapper {
+    width: var(--container-width);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: 50px;
+    margin: 40px 0 8px 0;
+  }
+  .intro {
+    margin: 0 0 40px 0;
+    opacity: 0.7;
+  }
+  .case {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding: 32px 0;
+  }
+  .case + .case {
+    border-top: 1px dashed var(--nav-shadow);
+  }
+  .case.reverse {
+    flex-direction: row-reverse;
+  }
+  .caseArt {
+    flex: 0 0 42%;
+  }
+  .caseText {
+    flex: 1;
+  }
+  h3 {
+    font-size: 26px;
+    margin: 0 0 12px 0;
+  }
+  .caseText p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+  }
+  .result span {
+    opacity: 0.85;
+  }
+  .caseLink {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 0.55rem 1.3rem;
+    border-radius: 0.4rem;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .caseLink:hover,
+  .caseLink:focus-visible {
+    background: var(--accent-hover);
+  }
+  .caseLink:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  /* Estilo lápiz compartido por las ilustraciones */
+  :global(.sketch) {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    --pencil: #6f6f6f;
+  }
+  :global([data-theme="dark"] .sketch) {
+    --pencil: #aab0c0;
+  }
+  :global(.sketch path),
+  :global(.sketch circle) {
+    fill: none;
+    stroke: var(--pencil);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  :global(.sketch .faint) {
+    stroke-width: 1.3;
+    opacity: 0.6;
+  }
+
+  @media screen and (max-width: 1024px) {
+    h2 {
+      font-size: 40px;
+    }
+    .case,
+    .case.reverse {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+    .caseArt {
+      flex: none;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  @media screen and (max-width: 425px) {
+    h2 {
+      font-size: 30px;
+    }
+    h3 {
+      font-size: 21px;
+    }
+    .experienceWrapper {
+      width: 88%;
+    }
+  }
+</style>

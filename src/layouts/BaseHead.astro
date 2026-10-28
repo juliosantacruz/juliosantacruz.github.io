@@ -6,6 +6,22 @@ const favicon = '../assets/favicon.ico'
 ---
 
 <head>
+	<!-- Tema e idioma: se aplican antes del primer pintado para evitar parpadeos -->
+	<script is:inline>
+		(function () {
+			var root = document.documentElement;
+			var theme = "light";
+			var lang = "en";
+			try {
+				var t = localStorage.getItem("theme");
+				theme = t === "light" || t === "dark" ? t : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+				var l = localStorage.getItem("lang");
+				lang = l === "en" || l === "es" ? l : ((navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en");
+			} catch (e) {}
+			root.dataset.theme = theme;
+			root.lang = lang;
+		})();
+	</script>
 	<!-- Google Analytics Ccode -->
 	<GoogleAnalitics/>
 

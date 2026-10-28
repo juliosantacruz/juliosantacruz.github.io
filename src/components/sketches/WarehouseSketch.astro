@@ -1,0 +1,55 @@
+---
+// Bodega en corte: un pallet con su caja entra, se estaciona en el rack y sale (FIFO).
+---
+
+<svg class="sketch warehouse" viewBox="0 0 400 240" role="img" aria-hidden="true">
+  <defs>
+    <filter id="pencilWarehouse" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" />
+      <feDisplacementMap in="SourceGraphic" scale="2.6" />
+    </filter>
+  </defs>
+  <g filter="url(#pencilWarehouse)">
+    <!-- piso -->
+    <path d="M8 211 Q 120 208 200 211 T 392 210" />
+    <path class="faint" d="M30 216 L60 216 M140 217 L175 217 M260 216 L300 216" />
+    <!-- techo y muros; abajo quedan abiertas la entrada y la salida -->
+    <path d="M78 97 L201 38 L323 96" />
+    <path d="M86 93 L85 148" />
+    <path d="M316 92 L317 148" />
+    <path d="M90 92 L91 148 M86 148 L118 149" />
+    <path d="M311 92 L310 148 M284 148 L316 147" />
+    <path class="faint" d="M190 62 L212 62 L211 80 L191 80 Z" />
+    <!-- rack -->
+    <path d="M168 211 L169 87 M232 211 L231 86" />
+    <path d="M162 171 L238 170 M162 131 L239 130 M163 88 L238 87" />
+    <path class="faint" d="M169 171 L231 131 M169 131 L231 88" />
+    <!-- pallet con caja, se anima -->
+    <g class="pallet">
+      <path d="M-2 0 L42 0 M0 -6 L40 -6 M2 0 L2 -6 M20 0 L20 -6 M38 0 L38 -6" />
+      <path d="M4 -6 L5 -36 L36 -37 L36 -6" />
+      <path d="M5 -36 L36 -37 M20 -37 L20 -24" class="faint" />
+      <path d="M9 -16 L9 -11 M11 -16 L11 -11 M14 -16 L14 -11 M16 -16 L16 -11" />
+    </g>
+  </g>
+</svg>
+
+<style>
+  .warehouse .pallet {
+    animation: palletFlow 9s ease-in-out infinite;
+  }
+  @keyframes palletFlow {
+    0% { transform: translate(-50px, 210px); }
+    22% { transform: translate(180px, 210px); }
+    32% { transform: translate(180px, 170px); }
+    58% { transform: translate(180px, 170px); }
+    68% { transform: translate(180px, 210px); }
+    92%, 100% { transform: translate(430px, 210px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .warehouse .pallet {
+      animation: none;
+      transform: translate(180px, 170px);
+    }
+  }
+</style>

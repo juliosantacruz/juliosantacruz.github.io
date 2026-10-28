@@ -2,43 +2,61 @@
 import LogoIcon from "../components/LogoIcon.astro";
 
 import django from "../assets/Logos_tech/django-logo-240.png";
-import javascript from "../assets/Logos_tech/javascript-logo-240.png";
-import cafe from "../assets/Logos_tech/coffee-bean-solid-240.png";
-import html5 from "../assets/Logos_tech/html5-logo-240.png";
-import email from "../assets/Logos_tech/mail-send-regular-240.png";
-import stripe from "../assets/Logos_tech/stripe-logo-240.png";
-import css3 from "../assets/Logos_tech/css3-logo-240.png";
-import sass from "../assets/Logos_tech/sass-logo-240.png";
 import git from "../assets/Logos_tech/git-logo-240.png";
 import react from "../assets/Logos_tech/react-logo-240.png";
 import github from "../assets/Logos_tech/github-logo-240.png";
 import postgresql from "../assets/Logos_tech/postgresql-logo-240.png";
 import nextjs from "../assets/Logos_tech/next-js.256x256.png";
-import postman from "../assets/Logos_tech/postman.256x256.png";
-import paypal from "../assets/Logos_tech/paypal-logo-240.png";
 import typescript from "../assets/Logos_tech/typescript-logo-240.png";
 import figma from "../assets/Logos_tech/figma-logo-240.png";
 import astrojs from "../assets/Logos_tech/astro-light.svg";
+import dotnet from "../assets/Logos_tech/dotnet-logo.svg";
+import nestjs from "../assets/Logos_tech/nestjs-logo.svg";
+import nodejs from "../assets/Logos_tech/nodejs-logo.svg";
+import sqlserver from "../assets/Logos_tech/sqlserver-logo.svg";
+import mongodb from "../assets/Logos_tech/mongodb-logo.svg";
+import aws from "../assets/Logos_tech/aws-logo.svg";
 
-const skillsArr = [
-    { title: "Django", img: django },
-    { title: "Javascript", img: javascript },
-    { title: "Coffee", img: cafe },
-    { title: "HTML5", img: html5 },
-    { title: "Email", img: email },
-    { title: "Stripe", img: stripe },
-    { title: "Css3", img: css3 },
-    { title: "Sass", img: sass },
-    { title: "Git", img: git },
-    { title: "React", img: react },
-    { title: "GitHub", img: github },
-    { title: "Postgesql", img: postgresql },
-    { title: "Nextjs", img: nextjs },
-    { title: "Postman", img: postman },
-    { title: "Paypal", img: paypal },
-    { title: "TypeScript", img: typescript },
-    { title: "Figma", img: figma },
-    { title: "AstroJs", img: astrojs },
+const skillGroups = [
+    {
+        key: "skills.frontend",
+        label: "Frontend",
+        items: [
+            { title: "React", img: react },
+            { title: "TypeScript", img: typescript },
+            { title: "Next.js", img: nextjs },
+            { title: "Astro", img: astrojs },
+        ],
+    },
+    {
+        key: "skills.backend",
+        label: "Backend",
+        items: [
+            { title: "C#/.NET", img: dotnet },
+            { title: "NestJS", img: nestjs },
+            { title: "Node.js", img: nodejs },
+            { title: "Django", img: django },
+        ],
+    },
+    {
+        key: "skills.databases",
+        label: "Databases",
+        items: [
+            { title: "SQL Server", img: sqlserver },
+            { title: "PostgreSQL", img: postgresql },
+            { title: "MongoDB", img: mongodb },
+        ],
+    },
+    {
+        key: "skills.cloud",
+        label: "Cloud & Tools",
+        items: [
+            { title: "AWS", img: aws },
+            { title: "Git", img: git },
+            { title: "GitHub", img: github },
+            { title: "Figma", img: figma },
+        ],
+    },
 ];
 
 ---
@@ -46,12 +64,38 @@ const skillsArr = [
 <section id="Skills">
     <div class="skillsSet">
         <h2>Skills, Frameworks, services and coffee</h2>
-        <div class="skillsGroup">
+        <div class="skillsLayout">
+        <div class="skillsMatrix">
             {
-                skillsArr.sort(() => Math.random() - 0.5).map((card) => {
-                    return <LogoIcon title={card.title} image={card.img.src} />;
-                })
+                skillGroups.map((group) => (
+                    <div class="skillsRow">
+                        <div class="categoryCard" data-i18n={group.key}>{group.label}</div>
+                        <div class="skillsGroup">
+                            {group.items.map((card) => (
+                                <LogoIcon title={card.title} image={card.img.src} />
+                            ))}
+                        </div>
+                    </div>
+                ))
             }
+        </div>
+        <aside class="practices">
+            <h3 data-i18n="skills.domainsTitle">Domains</h3>
+            <div class="domains">
+                <span data-i18n="skills.domainWms">Warehouse Management Systems (WMS)</span>
+                <span data-i18n="skills.domainSupply">Supply chain planning</span>
+                <span data-i18n="skills.domainConstruction">Construction</span>
+            </div>
+            <h3 data-i18n="skills.practicesTitle">Integrations & practices</h3>
+            <ul>
+                <li><strong data-i18n="skills.legacy">Legacy systems</strong><span data-i18n="skills.legacyDetail">ODBC integrations with AS400 and JD Edwards</span></li>
+                <li><strong data-i18n="skills.labels">Label printing</strong><span data-i18n="skills.labelsDetail">Zebra printers from web apps</span></li>
+                <li><strong data-i18n="skills.payments">Payments & email</strong><span>Stripe, PayPal, SendGrid</span></li>
+                <li><strong data-i18n="skills.maps">Maps</strong><span>Google Maps API</span></li>
+                <li><strong data-i18n="skills.realtime">Real-time</strong><span>SignalR</span></li>
+                <li><strong data-i18n="skills.teamwork">Teamwork</strong><span data-i18n="skills.teamworkDetail">Scrum with international teams</span></li>
+            </ul>
+        </aside>
         </div>
     </div>
 </section>
@@ -63,30 +107,114 @@ const skillsArr = [
         height: 100%;
         min-height: 100vh;
         width: 100vw;
-        background-color: #f2f2f2;
+        background-color: var(--surface-alt);
+        color: var(--text);
         background-attachment: fixed;
         display: flex;
         align-items: center;
     }
     .skillsSet {
         width: var(--container-width);
-        background-color: rgba(255, 255, 255, 0.637);
+        background-color: var(--surface);
 
-        margin: 0 auto;
         padding: 0 60px 60px 60px;
         box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.2);
         border-radius: 20px;
+        margin: 8rem auto;
+
+    }
+    :global([data-theme="dark"]) .skillsSet {
+        background-color: rgba(255, 255, 255, 0.04);
+        box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.5);
+    }
+    .skillsLayout {
+        display: flex;
+        gap: 40px;
+        align-items: stretch;
+    }
+    .skillsLayout .skillsMatrix {
+        flex: none;
+    }
+    .practices {
+        flex: 1;
+        min-width: 0;
+        border-left: 4px solid var(--accent);
+        padding: 4px 0 4px 24px;
+    }
+    .domains {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+    .domains span {
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 999px;
+    }
+    .practices h3 {
+        margin: 0 0 12px 0;
+        font-size: 22px;
+    }
+    .practices ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .practices li {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    .practices li span {
+        opacity: 0.75;
+    }
+    @media screen and (max-width: 1200px) {
+        .skillsLayout {
+            flex-direction: column;
+        }
+    }
+    .skillsMatrix {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .skillsRow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .categoryCard {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 110px;
+        height: 110px;
+        border: 3px solid transparent;
+        background-color: var(--accent);
+        color: #fff;
+        font-size: 17px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.2;
     }
     .skillsGroup {
-        width: 100%;
+        flex: 1;
+        gap: 12px;
         /* display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: 1fr; */
         justify-items: center;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        /* gap: 2rem; */
+        justify-content: flex-start;
     }
     h2 {
         font-size: 50px;
@@ -99,6 +227,11 @@ const skillsArr = [
         .skillsSet {
             padding: 0 40px 40px 40px;
         }
+        .categoryCard {
+            width: 90px;
+            height: 90px;
+            font-size: 15px;
+        }
         /* .skillsGroup {
             grid-template-columns: repeat(6, 1fr);
             gap: 1rem;
@@ -106,6 +239,24 @@ const skillsArr = [
     }
 
     @media screen and (max-width: 768px) {
+        .skillsSet {
+            padding: 0 20px 24px 20px;
+        }
+        .skillsRow {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+        }
+        .categoryCard {
+            width: 100%;
+            box-sizing: border-box;
+            height: auto;
+            padding: 8px 12px;
+            justify-content: flex-start;
+        }
+        .skillsGroup {
+            gap: 8px;
+        }
         /* .skillsGroup {
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: 1fr;

@@ -1,7 +1,5 @@
 ---
 import imageRocket from "../assets/Startup_Monochromatic.png";
-
-const resumeLink = 'https://drive.google.com/file/d/1q38-78G6pypf1Qmg8qWShHSpnRsKBC6T/view?usp=sharing'
 ---
 
 <section id="AboutMe">
@@ -11,16 +9,27 @@ const resumeLink = 'https://drive.google.com/file/d/1q38-78G6pypf1Qmg8qWShHSpnRs
         </div>
 
         <div class="content">
-            <h2>Hello, My name is Julio Santacruz, I'm a web developer</h2>
-            <p>Let me help you with your project</p>
-            <a href={resumeLink} class="resume-btn" target="_blank">Download Resume</a>
+            <h2 data-i18n="about.title">About me</h2>
+            <p data-i18n="about.p1">I'm a full-stack developer who builds web systems for real operations: inventory platforms, integrations with legacy systems, and SaaS products, from the database to the interface.</p>
+            <!-- <p data-i18n="about.p2">I care about software that people rely on every day, so I focus on clean data, clear interfaces, and code that's easy to maintain.</p> -->
+            <p data-i18n="about.p3">Outside of work, I run a home server where I experiment with Linux, networking, and self-hosting, using Cloudflare Tunnel to expose services securely.</p>
+            <ul class="facts">
+                <li data-i18n="about.years">5+ years building web applications</li>
+                <li><strong data-i18n="about.dailyLabel">Day-to-day stack:</strong> React, TypeScript, C#/.NET, SQL Server, NestJS</li>
+                <li><strong data-i18n="about.alsoLabel">Also worked with:</strong> Python/Django, Next.js, Astro, MongoDB, AWS</li>
+                <li data-i18n="about.languages">Fluent in English and Spanish</li>
+            </ul>
         </div>
     </div>
 </section>
 
 <style>
     section {
-        height: 100vh;
+        min-height: 100vh;
+        padding: 40px 0;
+        box-sizing: border-box;
+        background-color: var(--surface);
+        color: var(--text);
         width: 100vw;
         display: flex;
         flex-direction: row;
@@ -44,7 +53,6 @@ const resumeLink = 'https://drive.google.com/file/d/1q38-78G6pypf1Qmg8qWShHSpnRs
     }
     .content {
         width: 45%;
-        height: 500px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -52,22 +60,15 @@ const resumeLink = 'https://drive.google.com/file/d/1q38-78G6pypf1Qmg8qWShHSpnRs
     h2 {
         font-size: 30px;
     }
-    .resume-btn {
-        background: #4e66f8;
-        color: #fff;
-        border: none;
-        font-size: 1.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 0.3rem;
-        cursor: pointer;
-        box-shadow: 0px 10px 6px 0px rgba(0, 0, 0, 0.25);
-        text-decoration: none;
-        text-align: center;
+    p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin: 0 0 12px 0;
     }
-
-    .resume-btn:hover,
-    .resume-btn:focus {
-        background: #505ebb;
+    .facts {
+        margin: 8px 0 0 0;
+        padding-left: 20px;
+        line-height: 1.7;
     }
     @media screen and (max-width: 1024px) {
         h2 {
@@ -84,7 +85,7 @@ const resumeLink = 'https://drive.google.com/file/d/1q38-78G6pypf1Qmg8qWShHSpnRs
         }
         .content {
             width: 80%;
-            height: 40%;
+            height: auto;
         }
         .aboutMeImage {
             width: 60%;
@@ -100,7 +101,7 @@ const resumeLink = 'https://drive.google.com/file/d/1q38-78G6pypf1Qmg8qWShHSpnRs
 
         .content {
             width: 100%;
-            height: 40%;
+            height: auto;
         }
         .aboutMeImage {
             width: 100%;
